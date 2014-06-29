@@ -1,0 +1,2 @@
+# Namespace
+window.PlanetRunner = {}

@@ -3,6 +3,9 @@
   %script{ src: 'scripts/jquery-2.1.1.js' }
   %script{ src: 'scripts/lodash.min.js' }
   %script{ src: 'scripts/physicsjs-full-0.6.0.js' }
+  %script{ src: 'scripts/namespace.js' }
+  %script{ src: 'scripts/planet.js' }
+  %script{ src: 'scripts/distribution.js' }
   %script{ src: 'scripts/main.js' }
   %body
     %canvas#viewport{ width: 500, height: 300 }
