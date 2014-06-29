@@ -1,12 +1,11 @@
 (function() {
-  var baseBehaviors, renderer, sign;
+  var sign;
 
   $(function() {
-    var ball, planet, point, points, viewportBounds, _i, _len;
-    window.world = Physics();
+    var ball, planet, point, points, world, _i, _len;
     window.viewWidth = window.innerWidth;
     window.viewHeight = window.innerHeight;
-    world.add(renderer());
+    world = PlanetRunner.world(viewWidth, viewHeight);
     points = PlanetRunner.randomDistribution(viewHeight, viewWidth, 20, 15);
     for (_i = 0, _len = points.length; _i < _len; _i++) {
       point = points[_i];
@@ -25,7 +24,7 @@
       restitution: 0.5
     });
     world.add(ball);
-    $(document).keypress(function() {
+    return $(document).keypress(function() {
       var accel, newVX, newVY, vX, vY;
       accel = 0.05;
       vX = ball.state.vel.x;
@@ -37,42 +36,7 @@
         y: newVY
       });
     });
-    viewportBounds = Physics.aabb(0, 0, viewWidth, viewHeight);
-    world.add(Physics.behavior('edge-collision-detection', {
-      aabb: viewportBounds,
-      restitution: 0.95,
-      cof: 0.95
-    }));
-    world.add(baseBehaviors());
-    world.on('step', function() {
-      return world.render();
-    });
-    Physics.util.ticker.on(function(time) {
-      return world.step(time);
-    });
-    return Physics.util.ticker.start();
   });
-
-  baseBehaviors = function() {
-    return [Physics.behavior('body-impulse-response'), Physics.behavior('body-collision-detection'), Physics.behavior('sweep-prune')];
-  };
-
-  renderer = function() {
-    return renderer = Physics.renderer('canvas', {
-      el: 'viewport',
-      width: viewWidth,
-      height: viewHeight,
-      meta: false,
-      styles: {
-        circle: {
-          strokeStyle: '#351024',
-          lineWidth: 1,
-          fillStyle: '#d33682',
-          angleIndicator: '#351024'
-        }
-      }
-    });
-  };
 
   sign = function(number) {
     if (number > 0) {
