@@ -1,5 +1,7 @@
 # Planet Runner
 
+<a href="http://kkuchta.github.io/planet_runner">See it live</a>
+
 Just a little toy thing to play with a js physics engine.  The sum total of the features include:
 
 - A Best-Candidate planetary distribution (a little nicer looking than pure random)
